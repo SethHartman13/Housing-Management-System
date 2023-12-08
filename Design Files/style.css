@@ -1,0 +1,41 @@
+.level4 {
+    color: #BB77ED;
+}
+.level3 {
+    color: #8699EB;
+}
+.level2 {
+    color: #51BAEA;
+}
+
+.level1 {
+    color: #1CDCE8;
+}
+
+.cvar {
+    color: #F4119E;
+}
+
+.uvar {
+    color: #BB1C7E;
+}
+
+.svar {
+    color: #83265E;
+}
+
+.gvar {
+    color: #4A313E;
+}
+
+.optional {
+    color: #8236f5;
+}
+
+.required {
+    color: #ff0000;
+}
+
+.rft {
+    color: #ffff00;
+}
