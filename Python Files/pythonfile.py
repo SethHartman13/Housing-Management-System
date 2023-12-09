@@ -10,9 +10,10 @@ def main():
         if room_input not in output_json.keys():
         
             tier_input = 1
+            output_json[room_input] = {}
             
             while input(f"Do you want to make a tier for tier {tier_input}? ").lower() in "yes" or tier_input == 1:
-                output_json[room_input] = {f"{tier_input}": {}}
+                output_json[room_input][f"{tier_input}"] = {}
                 
                 if (tier_name := input("Tier name? ")) != "":
                     output_json[room_input][str(tier_input)]["TierName"] = tier_name
@@ -26,8 +27,8 @@ def main():
                 else:
                     pass
                 
-                if (min_size := input("Minimum Size? ")) != "":
-                    output_json[room_input][str(tier_input)]["MinSize"] = min_size
+                if (size := input("Size? ")) != "":
+                    output_json[room_input][str(tier_input)]["Size"] = size
                     
                 else:
                     pass
@@ -47,19 +48,19 @@ def main():
                     else:
                         while_loop = False
                     
-                while_loop = True
+                # while_loop = True
                 
-                while while_loop:
-                    if (build_time := input("Build Time (in seconds)? ")) != "":
-                        try:
-                            output_json[room_input][str(tier_input)]["BuildTime"] = int(build_time)
-                            while_loop = False
+                # while while_loop:
+                #     if (build_time := input("Build Time (in seconds)? ")) != "":
+                #         try:
+                #             output_json[room_input][str(tier_input)]["BuildTime"] = int(build_time)
+                #             while_loop = False
                             
-                        except:
-                            print("Please enter in an integer")
+                #         except:
+                #             print("Please enter in an integer")
                             
-                    else:
-                        while_loop = False
+                #     else:
+                #         while_loop = False
                         
                 while_loop = True
                 
@@ -104,13 +105,19 @@ def main():
                 tier_input += 1
                 
                 print("")                  
-                
-                       
+                      
         else:
             print("Room already exists")
-            
-    with open(f"{input('JSON name? ').replace(' ', '_')}.json", "x+") as json_file:
-        json.dump(output_json, json_file, indent=4)
+    
+    while True:
+        try:
+            with open(f"{input('JSON name? ').replace(' ', '_')}.json", "x+") as json_file:
+                json.dump(output_json, json_file, indent=4)
+                
+            break
+        
+        except Exception as error:
+            print(error)
         
     print("JSON Generated")
     print(f"Characters (compact): {len(json.dumps(output_json))}")
